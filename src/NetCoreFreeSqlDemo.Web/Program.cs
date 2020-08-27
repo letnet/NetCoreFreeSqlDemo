@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using NetCoreFreeSqlDemo.Infrastructure;
 using NLog.Web;
-using AspectCore.Extensions.Hosting;
 
 namespace NetCoreFreeSqlDemo.Web
 {
@@ -31,8 +24,8 @@ namespace NetCoreFreeSqlDemo.Web
                 logging.ClearProviders();
                 logging.SetMinimumLevel(LogLevel.Trace);
             })
-            .UseNLog()            
-            .UseDynamicProxy();//aspcectcore
+            .UseNLog()
+            .UseServiceProviderFactory(new FreeSql.DynamicProxyServiceProviderFactory());
     }
 }
 

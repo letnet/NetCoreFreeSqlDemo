@@ -26,9 +26,9 @@ namespace NetCoreFreeSqlDemo.Infrastructure
             allTypes?.ForEach(thisType =>
             {
                 //注入的限制
-                var allInterfaces = thisType.GetInterfaces().Where(p => p.GetInterfaces().Contains(typeof(IBaseApplication))).ToList();
+                var allInterfaces = thisType.GetInterfaces().Where(p => p == typeof(IBaseApplication)).ToList();
                 allInterfaces?.ForEach(thisInterface => {
-                    services.AddScoped(thisInterface, thisType);//只要符合条件的所有接口都注入t类
+                    services.AddScoped(thisType);//只要符合条件的所有接口都注入t类
                 });
             });
         }

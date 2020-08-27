@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NetCoreFreeSqlDemo.Application;
+using NetCoreFreeSqlDemo.Application.Application;
 using NetCoreFreeSqlDemo.Web.Models;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -8,8 +9,8 @@ namespace NetCoreFreeSqlDemo.Web.Controllers
 {
     public class HomeController : Controller
     {
-        ITestService _testService { get; set; }
-        public HomeController(ITestService testService)
+        TestService _testService { get; set; }
+        public HomeController(TestService testService)
         {
             this._testService = testService;
         }

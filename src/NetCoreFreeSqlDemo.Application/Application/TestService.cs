@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace NetCoreFreeSqlDemo.Application.Application
 {
-    public class TestService : ITestService
+    public class TestService : IBaseApplication
     {
         BaseRepository<Test> _testRepository { get; set; }
-        //IRepository<Test> _testRepository { get; set; }
+
         public TestService(BaseRepository<Test> testRepository)
         {
             this._testRepository = testRepository;
         }
 
         //[Transactional]
-        public async Task<TestDto> Get(string id)
+        public virtual async Task<TestDto> Get(string id)
         {
             var test = await _testRepository.Select.Where(p => p.ID == id).FirstAsync();
             return test.MapTo<TestDto>();

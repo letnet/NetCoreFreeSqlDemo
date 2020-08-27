@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NetCoreFreeSqlDemo.Application;
+using NetCoreFreeSqlDemo.Application.Application;
 using NetCoreFreeSqlDemo.Application.Models;
 
 namespace NetCoreFreeSqlDemo.Web.Controllers
@@ -13,8 +13,8 @@ namespace NetCoreFreeSqlDemo.Web.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        ITestService _testService { get; set; }
-        public TestController(ITestService testService)
+        TestService _testService { get; set; }
+        public TestController(TestService testService)
         {
             this._testService = testService;
         }

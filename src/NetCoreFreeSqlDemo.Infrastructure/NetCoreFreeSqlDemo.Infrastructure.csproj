@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspectCore.Abstractions" Version="2.1.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="FreeSql.DbContext" Version="1.8.1" />
+    <PackageReference Include="FreeSql.DynamicProxy" Version="1.4.0" />
     <PackageReference Include="FreeSql.Provider.MySql" Version="1.8.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.6" />
