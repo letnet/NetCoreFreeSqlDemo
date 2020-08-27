@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp3.1\NetCoreFreeSqlDemo.Application.xml</DocumentationFile>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreFreeSqlDemo.Infrastructure\NetCoreFreeSqlDemo.Infrastructure.csproj" />
+    <ProjectReference Include="..\NetCoreFreeSqlDemo.Utility\NetCoreFreeSqlDemo.Utility.csproj" />
+  </ItemGroup>
+
+</Project>
+
+
