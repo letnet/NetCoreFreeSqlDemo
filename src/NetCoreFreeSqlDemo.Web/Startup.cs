@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NetCoreFreeSqlDemo.Infrastructure;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -22,21 +23,31 @@ namespace NetCoreFreeSqlDemo.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            Fsql = FreeSqlDb.Builder(Configuration);
+            Fsql.Aop.CurdAfter += (s, e) => {
+                if (e.ElapsedMilliseconds > 1000)
+                {
+                    //打印高耗时的sql
+                    Debug.WriteLine($"耗时：{e.ElapsedMilliseconds}ms，SQL：{e.Sql}");
+                }
+            };
         }
 
         public IConfiguration Configuration { get; }
+
+        public static IFreeSql Fsql;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //FreeSql配置
-            services.AddSingleton<IFreeSql>(FreeSqlDb.Builder(Configuration));
+            services.AddSingleton<IFreeSql>(Fsql);
             services.AddScoped<UnitOfWorkManager>();
             services.AddFreeRepository(null, typeof(Startup).Assembly);
 
             services.AddAutoMapper();
             services.AddAutoInject();
-            services.AddMiniProfiler();
 
             string jwtsecret = Configuration["JWTSecret"];
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -89,7 +100,6 @@ namespace NetCoreFreeSqlDemo.Web
                 app.UseHsts();
             }
             app.UseStateAutoMapper();
-            app.UseMiniProfiler();
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
