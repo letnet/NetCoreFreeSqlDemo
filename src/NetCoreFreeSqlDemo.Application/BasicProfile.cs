@@ -12,8 +12,7 @@ namespace NetCoreFreeSqlDemo.Application
     {
         public BasicProfile()
         {
-            CreateMap<TestDto, Test>();
-            CreateMap<Test, TestDto>();
+            CreateMap<Test, TestDto>().ReverseMap();
         }
     }
 }
