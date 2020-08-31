@@ -3,6 +3,7 @@ using FreeSql;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -114,6 +115,11 @@ namespace NetCoreFreeSqlDemo.Web
             app.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             app.UseAuthorization();
+            // needed for  ${aspnet-request-posted-body} with an API Controller. Must be before app.UseEndpoints
+            app.Use(async (context, next) => {
+                context.Request.EnableBuffering();
+                await next();
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
