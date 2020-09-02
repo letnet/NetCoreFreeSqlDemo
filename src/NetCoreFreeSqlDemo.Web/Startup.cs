@@ -63,7 +63,7 @@ namespace NetCoreFreeSqlDemo.Web
                             ClockSkew = TimeSpan.Zero
                         };
                     });
-
+            services.AddHealthChecks();
             services.AddControllersWithViews()
             .AddNewtonsoftJson(setupAction =>
             {
@@ -101,6 +101,7 @@ namespace NetCoreFreeSqlDemo.Web
                 app.UseHsts();
             }
             app.UseStateAutoMapper();
+            app.UseHealthChecks("/Health");
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
