@@ -26,7 +26,8 @@ namespace NetCoreFreeSqlDemo.Web
             Configuration = configuration;
 
             Fsql = FreeSqlDb.Builder(Configuration);
-            Fsql.Aop.CurdAfter += (s, e) => {
+            Fsql.Aop.CurdAfter += (s, e) =>
+            {
                 if (e.ElapsedMilliseconds > 1000)
                 {
                     //打印高耗时的sql
@@ -72,7 +73,7 @@ namespace NetCoreFreeSqlDemo.Web
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-            }); 
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -81,6 +82,26 @@ namespace NetCoreFreeSqlDemo.Web
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+
+                c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme()
+                {
+                    Description = "在下框中输入请求头中需要添加Jwt授权Token：Bearer Token",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme{
+                            Reference = new OpenApiReference {
+                                        Type = ReferenceType.SecurityScheme,
+                                        Id = "Bearer"}
+                        },new string[] { }
+                    }
+                });
             });
         }
 
@@ -114,13 +135,14 @@ namespace NetCoreFreeSqlDemo.Web
 
             app.UseRouting();
             app.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            app.UseAuthentication();
-            app.UseAuthorization();
             // needed for  ${aspnet-request-posted-body} with an API Controller. Must be before app.UseEndpoints
-            app.Use(async (context, next) => {
+            app.Use(async (context, next) =>
+            {
                 context.Request.EnableBuffering();
                 await next();
             });
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
