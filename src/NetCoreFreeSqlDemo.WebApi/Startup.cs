@@ -90,7 +90,7 @@ namespace NetCoreFreeSqlDemo.WebApi
 
                 c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme()
                 {
-                    Description = "在下框中输入请求头中需要添加Jwt授权Token：Bearer Token",
+                    Description = "JWT Bearer ��Ȩ \"Authorization:Bearer+�ո�+token\"",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
