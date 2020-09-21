@@ -34,8 +34,8 @@ namespace NetCoreFreeSqlDemo.WebApi
             {
                 if (e.ElapsedMilliseconds > 1000)
                 {
-                    //打印高耗时的sql
-                    Debug.WriteLine($"耗时：{e.ElapsedMilliseconds}ms，SQL：{e.Sql}");
+                    //鎵撳嵃楂樿�楁椂鐨剆ql
+                    Debug.WriteLine($"鑰楁椂锛歿e.ElapsedMilliseconds}ms锛孲QL锛歿e.Sql}");
                 }
             };
         }
@@ -47,7 +47,7 @@ namespace NetCoreFreeSqlDemo.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //FreeSql配置
+            //FreeSql閰嶇疆
             services.AddSingleton<IFreeSql>(Fsql);
             services.AddScoped<UnitOfWorkManager>();
             services.AddFreeRepository(null, typeof(Startup).Assembly);
@@ -90,7 +90,7 @@ namespace NetCoreFreeSqlDemo.WebApi
 
                 c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme()
                 {
-                    Description = "JWT Bearer 授权 \"Authorization:Bearer+空格+token\"",
+                    Description = "JWT Bearer 鎺堟潈 \"Authorization:Bearer+绌烘牸+token\"",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
