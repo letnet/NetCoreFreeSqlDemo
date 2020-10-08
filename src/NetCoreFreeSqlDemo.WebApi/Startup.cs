@@ -38,6 +38,8 @@ namespace NetCoreFreeSqlDemo.WebApi
                     Debug.WriteLine($"耗时：{e.ElapsedMilliseconds}ms，SQL：{e.Sql}");
                 }
             };
+
+            NLog.GlobalDiagnosticsContext.Set("DefaultConnection", Configuration.GetConnectionString("SqlConnection"));
         }
 
         public IConfiguration Configuration { get; }

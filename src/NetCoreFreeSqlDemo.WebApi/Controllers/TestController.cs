@@ -10,7 +10,7 @@ using NetCoreFreeSqlDemo.Application.Models;
 
 namespace NetCoreFreeSqlDemo.WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class TestController : ControllerBase
