@@ -63,7 +63,7 @@ namespace NetCoreFreeSqlDemo.WebApi
                     {
                         p.TokenValidationParameters = new TokenValidationParameters
                         {
-                            ValidIssuer = "Login",
+                            ValidIssuer = "UsersCenter",
                             ValidAudience = "User",
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(jwtsecret)),
                             ValidateLifetime = true,
