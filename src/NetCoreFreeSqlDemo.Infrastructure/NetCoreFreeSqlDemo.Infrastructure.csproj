@@ -5,14 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
-    <PackageReference Include="FreeSql.DbContext" Version="1.8.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="FreeSql.DbContext" Version="1.10.1" />
     <PackageReference Include="FreeSql.DynamicProxy" Version="1.4.0" />
-    <PackageReference Include="FreeSql.Provider.MySql" Version="1.8.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.7" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.7" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1" />
+    <PackageReference Include="FreeSql.Provider.MySql" Version="1.10.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3" />
   </ItemGroup>
 
 </Project>
